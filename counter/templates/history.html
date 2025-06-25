@@ -1,10 +1,30 @@
-{% for entry in entries %}
-  <li class="bg-white shadow p-4 my-3 rounded">
-    <p class="font-semibold">{{ entry.date }} — {{ entry.total }} cal</p>
-    <ul class="ml-4 list-disc text-sm text-gray-700">
-      {% for item in entry.items %}
-        <li>{{ item.name }} - {{ item.calories }} cal</li>
+{% extends "base.html" %}
+{% block title %}History{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold text-center text-indigo-700 mb-8 tracking-tight">Your Calorie History</h1>
+
+  {% if entries %}
+    <div class="space-y-6">
+      {% for entry in entries %}
+        <div class="bg-gradient-to-tr from-white to-indigo-50 shadow-md border-l-4 border-indigo-400 rounded-lg p-6">
+          <div class="flex justify-between items-center mb-2">
+            <h2 class="text-xl font-semibold text-gray-800">{{ entry.date }}</h2>
+            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
+              Total: {{ entry.total }} kcal
+            </span>
+          </div>
+          <ul class="pl-5 text-sm text-gray-700 list-disc space-y-1">
+            {% for item in entry.items %}
+              <li><span class="font-medium">{{ item.name }}</span> — {{ item.calories }} kcal</li>
+            {% endfor %}
+          </ul>
+        </div>
       {% endfor %}
-    </ul>
-  </li>
-{% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-gray-500 mt-12 text-lg">No food history yet. Start tracking your meals!</p>
+  {% endif %}
+</div>
+{% endblock %}
