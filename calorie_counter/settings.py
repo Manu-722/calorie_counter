@@ -75,21 +75,21 @@ WSGI_APPLICATION = 'calorie_counter.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'calorie_db',
-#         'USER': 'calorie_user',
-#         'PASSWORD': 'calories',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+     }
+ }
+DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.postgresql',
+          'NAME': 'calorie_db',
+          'USER': 'calorie_user',
+          'PASSWORD': 'calories',
+          'HOST': 'localhost',
+          'PORT': '5432',
+      }
+  }
 
 
 # Password validation
@@ -129,6 +129,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static',
   ]
+LOGIN_REDIRECT_URL = '/history/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
