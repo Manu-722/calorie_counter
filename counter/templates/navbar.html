@@ -1,0 +1,12 @@
+<nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
+  <a href="{% url 'index' %}" class="text-xl font-semibold">Calorie Tracker</a>
+  <div class="space-x-4">
+    {% if user.is_authenticated %}
+      <span>Hello, {{ user.username }}</span>
+      <a href="{% url 'logout' %}" class="hover:underline">Logout</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="hover:underline">Login</a>
+    {% endif %}
+    <a href="{% url 'history' %}" class="hover:underline">History</a>
+  </div>
+</nav>
