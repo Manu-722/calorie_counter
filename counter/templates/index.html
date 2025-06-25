@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calorie Counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-center p-6">
+    <h1 class="text-3xl font-bold mb-4">Calorie Counter</h1>
+
+    <form method="POST" class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="add" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+        <button type="submit" name="reset" class="bg-red-500 text-white px-4 py-2 rounded">Reset</button>
+    </form>
+
+    <h2 class="text-xl mt-6">Total Calories: <strong>{{ total_calories }}</strong></h2>
+
+    <ul class="mt-4">
+        {% for item in foods %}
+            <li class="flex justify-between items-center max-w-md mx-auto bg-white shadow p-2 my-2">
+                {{ item.name }} - {{ item.calories }} cal
+                <a href="{% url 'delete_item' item.id %}" class="text-red-600">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
