@@ -1,6 +1,10 @@
-{% extends 'base.html' %}
-{% block title %}History{% endblock %}
-{% block content %}
-  <h1 class="text-2xl font-bold mb-4 text-center">Calorie History</h1>
-  <p class="text-center text-gray-600">History view coming soon.</p>
-{% endblock %}
+{% for entry in entries %}
+  <li class="bg-white shadow p-4 my-3 rounded">
+    <p class="font-semibold">{{ entry.date }} — {{ entry.total }} cal</p>
+    <ul class="ml-4 list-disc text-sm text-gray-700">
+      {% for item in entry.items %}
+        <li>{{ item.name }} - {{ item.calories }} cal</li>
+      {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
