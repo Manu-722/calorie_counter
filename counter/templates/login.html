@@ -1,14 +1,25 @@
-{% extends 'base.html' %}
-{% block title %}Login{% endblock %}
+{% extends 'base.html' %}  
+
+{% block title %}Login{% endblock %}  {# Set the title #}
+
 {% block content %}
 <div class="max-w-md mx-auto bg-white p-6 shadow rounded mt-10">
+  
+  {# Page heading #}
   <h2 class="text-xl font-bold mb-4 text-center">Login</h2>
+
+  {# Display error message if the login form has errors (e.g. invalid credentials) #}
   {% if form.errors %}
     <p class="text-red-500 text-sm mb-4">Invalid username or password.</p>
   {% endif %}
+
+  {# Begin the login form. Form data will be submitted via POST. #}
   <form method="post" class="space-y-4">
-    {% csrf_token %}
-    {{ form.as_p }}
+    {% csrf_token %}  {# Include CSRF token for security #}
+
+    {{ form.as_p }}  {# Render the login form fields as paragraphs (username and password) #}
+
+    {# Submit button #}
     <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
       Sign In
     </button>

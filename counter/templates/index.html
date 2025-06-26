@@ -1,37 +1,45 @@
-{% extends 'base.html' %}
-{% block title %}Calorie Tracker{% endblock %}
+{% extends 'base.html' %}  
+{% block title %}Calorie Tracker{% endblock %}  {# Set the page's title  #}
 
 {% block content %}
 <h1 class="text-3xl font-bold text-center mb-6">Calorie Counter</h1>
 
+{# Display form validation errors, if any #}
 {% if form.errors %}
     <ul class="text-red-500 text-sm mb-4">
         {% for field in form %}
             {% for error in field.errors %}
-                <li>{{ field.label }}: {{ error }}</li>
+                <li>{{ field.label }}: {{ error }}</li>  {# Show the field label and error message #}
             {% endfor %}
         {% endfor %}
     </ul>
 {% endif %}
 
+{# Form to add a new food item: includes CSRF protection and input fields #}
 <form method="POST" class="space-y-4 max-w-md mx-auto">
     {% csrf_token %}
     <div class="text-left">
         <label for="id_name" class="block font-semibold">Name:</label>
-        {{ form.name }}
+        {{ form.name }}  {# Django automatically renders the input field #}
     </div>
     <div class="text-left">
         <label for="id_calories" class="block font-semibold">Calories:</label>
-        {{ form.calories }}
+        {{ form.calories }}  {# Input field for calorie value #}
     </div>
+
+    {# Action buttons: one to add, the other to reset the entire list #}
     <div class="flex gap-2">
         <button type="submit" name="add" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Add</button>
         <button type="submit" name="reset" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Reset</button>
     </div>
 </form>
 
-<h2 class="text-xl font-medium text-center mt-8">Total Calories: <strong>{{ total_calories }}</strong></h2>
+{# Display the running total of all calories added #}
+<h2 class="text-xl font-medium text-center mt-8">
+  Total Calories: <strong>{{ total_calories }}</strong>
+</h2>
 
+{# Show list of food items or a placeholder message if none exist #}
 {% if foods %}
     <ul class="mt-4 max-w-md mx-auto">
         {% for item in foods %}
